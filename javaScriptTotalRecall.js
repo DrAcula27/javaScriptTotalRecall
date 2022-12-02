@@ -323,3 +323,135 @@ console.log(`Thom is looking fierce in his ${thomsShirt}, ${thomsPants} and ${th
 thomsCloset[1][2] = "Footie Pajamas";
 console.log(thomsCloset);
 console.log("");
+
+// IV. Functions
+
+// A. printGreeting
+    // Do you think you could write a function called printGreeting with a parameter name that returns a greeting with the argument interpolated into the greeting?
+    // Like so?
+    // console.log(printGreeting("Slimer"));
+    // => Hello there, Slimer!
+    // You think you could? I think so too. Feel free to skip this problem, because you've already done it. If you've done the problem twice, read entire problems carefully before doing them from now on.
+
+// B. printCool
+// Write a function printCool that accepts one parameter, name, as an argument. The function should print the name and a message saying that that person is cool.
+    // for example:
+    // console.log(printCool("Captain Reynolds"));
+    // => "Captain Reynolds is cool";
+    const printCool = (name) => {
+        return `${name} is cool.`;
+    }
+    console.log(printCool("Gandalf"));
+    console.log("");
+
+// C. calculateCube
+// Write a function calculateCube that takes a single number and prints the volume of a cube made from that number.
+    // for example:
+    // console.log(calculateCube(5));
+    // => 125
+    const calculateCube = (sideLength) => {
+        let volume = Math.pow(sideLength, 3);
+        return volume;
+    }
+    console.log(calculateCube(5));
+    console.log("");
+
+// D. isVowel
+// Write a function isVowel that takes a character (i.e. a string of length 1) and returns true if it is a vowel, false otherwise. The vowel could be upper or lower case. Test your function on every vowel and make sure it's working. In general, when you write functions, take a minute to test them with different values to make sure they behave the way you want.
+    // for example:
+    // console.log(isVowel("a"));
+    // => true
+    const isVowel = (character) => {
+        let char = character.toLowerCase();
+        if(char == "a" || char == "e" || char == "i" || char == "o" || char == "u") {
+            return true;
+        }
+        return false;
+    }
+    console.log(isVowel("a")); // expected output: true
+    console.log(isVowel("e")); // expected output: true
+    console.log(isVowel("i")); // expected output: true
+    console.log(isVowel("o")); // expected output: true
+    console.log(isVowel("u")); // expected output: true
+    console.log(isVowel("A")); // expected output: true
+    console.log(isVowel("E")); // expected output: true
+    console.log(isVowel("I")); // expected output: true
+    console.log(isVowel("O")); // expected output: true
+    console.log(isVowel("U")); // expected output: true
+    console.log(isVowel("y")); // expected output: false
+    console.log(isVowel("b")); // expected output: false
+    console.log("");
+
+// E. getTwoLengths
+    // Write a function getTwoLengths that accepts two parameters (strings). The function should return an array of numbers where each number is the length of the corresponding string.
+    // for example:
+    // console.log(getTwoLengths("Hank", "Hippopopalous"));
+    // => [4, 13]
+    const getTwoLengths = (string1, string2) => {
+        let array = [string1.length, string2.length];
+        return array;
+    }
+    console.log(getTwoLengths("Hello", "there")); // expected output: [5, 5]
+    console.log("");
+
+// F. getMultipleLengths
+    // Write a function getMultipleLengths that accepts a single parameter as an argument: an array of strings. The function should return an array of numbers where each number is the length of the corresponding string.
+    // for example:
+    // console.log(getMultipleLengths(["hello", "what", "is", "up", "dude"]));
+    // => [5, 4, 2, 2, 4]
+    const getMultipleLengths = (stringsArray) => {
+        let lengthsArray = [];
+        stringsArray.forEach((string) => {
+            lengthsArray.push(string.length);
+        });
+        return lengthsArray;
+    }
+    console.log(getMultipleLengths(["hello", "what", "is", "up", "dude"])); // expected output: [5, 4, 2, 2, 4]
+    console.log("");
+
+// G. maxOfThree
+    // Define a function maxOfThree that takes three numbers as arguments and returns the largest of them. If all numbers are the same, it doesn't matter which one is returned. If the two largest numbers are the same, one of them should be returned. Be sure to test it with larger values in each of the three locations.
+    // for example:
+    // console.log(maxOfThree(6, 9, 1));
+    // => 9
+    // Did you use Google and find Math.max()? If so, great job! Very resourceful—keep looking stuff up! However, for this particular question, we need you to submit a solution that does not use Math.max().
+    const maxOfThree = (num1, num2, num3) => {
+        let maxValue = (num1 > num2) ?
+                       (num1 > num3 ? num1 : num3) :
+                       (num2 > num3 ? num2 : num3);
+        // below is the logic written as if statements.
+        // if (num1 > num2) {
+        //     maxValue = num1;
+        // } else {
+        //     maxValue = num2;
+        // }
+        // if (num3 > maxValue) {
+        //     maxValue = num3;
+        // }
+        return maxValue;
+    }
+    console.log(maxOfThree(0, 0, 0)); // expected output: 0
+    console.log(maxOfThree(-10, 10, 10)); // expected output: 10
+    console.log(maxOfThree(1, 2, 3)); // expected output: 3
+    console.log(maxOfThree(3, 2, 1)); // expected output: 3
+    console.log(maxOfThree(2, 3, 1)); // expected output: 3
+    console.log("");
+
+// H. printLongestWord
+    // Write a function printLongestWord that accepts a single argument, an array of strings. The method should return the longest word in the array. In case of a tie, the method should return the word that appears first in the array.
+    // for example:
+    // console.log(printLongestWord(["BoJack", "Princess", "Diane", "a", "Max", "Peanutbutter", "big", "Todd"]));
+    // => "Peanutbutter"
+    const printLongestWord = (stringsArray = []) => {
+        if(!stringsArray?.length) return "";
+        let longestString = "";
+        longestString = stringsArray.reduce((acc, val) => {
+            return acc.length >= val.length ? acc : val;
+        });
+        return longestString;
+    }
+    console.log(printLongestWord(["BoJack", "Princess", "Diane", "a", "Max", "Peanutbutter", "big", "Todd"])); // expected output: Peanutbutter
+    console.log(printLongestWord()); // expected output: ""
+    console.log(printLongestWord(["aaaa", "aa", "aa", "aaaaa", "acc", "aaaaaaaa"])); // expected output: aaaaaaaa
+    console.log(printLongestWord(["aaaa", "aaaa", "aa", "zyx", "acc", "42"])); // expected output: aaaa
+    console.log("");
